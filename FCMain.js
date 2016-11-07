@@ -93,19 +93,10 @@ function FCRomChange(changerom) {
 	FCPause();
 
 	var rom;
-	if(typeof changerom === "string") {
-		var rom = new Array();
-		for(var i=0; i<changerom.length; i+=2)
-			rom.push(eval("0x" + changerom.substr(i, 2)));
-	} else if(changerom instanceof ArrayBuffer) {
-		var u8array = new Uint8Array(changerom);
-		rom = new Array();
-		for(var i=0; i<u8array.length; i++)
-			rom.push(u8array[i]);
-	} else if(changerom instanceof Array) {
-		rom = changerom;
-	} else
-		return;
+	var u8array = new Uint8Array(changerom);
+	rom = new Array();
+	for(var i=0; i<u8array.length; i++)
+		rom.push(u8array[i]);
 
 	var tmp = ParseRom(rom);
 
@@ -139,9 +130,7 @@ function FCRomChange(changerom) {
 
 function FCSetUp() {
 	fc = new FC();
-	if (!fc.SetCanvas("canvas0"))
-		return false
-	return true;
+	return fc.SetCanvas("canvas0") ? true : false;
 }
 
 
@@ -192,11 +181,11 @@ function FCSet() {
 		document.getElementById("insert").addEventListener("click", DiskInsert, false);
 		document.getElementById("eject").addEventListener("click", DiskEject, false);
 
-		document.getElementById("sramout").addEventListener("click", SramOut, false);
+		/*document.getElementById("sramout").addEventListener("click", SramOut, false);
 		document.getElementById("sramin").addEventListener("click", SramIn, false);
 
 		document.getElementById("statesave").addEventListener("click", StateSave, false);
-		document.getElementById("stateload").addEventListener("click", StateLoad, false);
+		document.getElementById("stateload").addEventListener("click", StateLoad, false);*/
 
 		document.getElementById("start").disabled = true;
 		document.getElementById("pause").disabled = true;

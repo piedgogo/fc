@@ -1045,6 +1045,1321 @@ FC.prototype.SRE = function (address) {
 }
 
 
+
+
+
+
+
+
+
+
+
+FC.prototype[0xA1] = function () {//LDA XIND
+	this.LDA(this.GetAddressIndirectX());
+}
+
+
+FC.prototype[0xA5] = function () {//LDA ZP
+	this.LDA(this.GetAddressZeroPage());
+}
+
+
+FC.prototype[0xA9] = function () {//LDA IMM
+	this.LDA(this.GetAddressImmediate());
+}
+
+
+FC.prototype[0xAD] = function () {//LDA ABS
+	this.LDA(this.GetAddressAbsolute());
+}
+
+
+FC.prototype[0xB1] = function () {//LDA INDY
+	this.LDA(this.GetAddressIndirectY());
+}
+
+
+FC.prototype[0xB5] = function () {//LDA ZPX
+	this.LDA(this.GetAddressZeroPageX());
+}
+
+
+FC.prototype[0xB9] = function () {//LDA ABSY
+	this.LDA(this.GetAddressAbsoluteY());
+}
+
+
+FC.prototype[0xBD] = function () {//LDA ABSX
+	this.LDA(this.GetAddressAbsoluteX());
+}
+
+
+FC.prototype[0xA2] = function () {//LDX IMM
+	this.LDX(this.GetAddressImmediate());
+}
+
+
+FC.prototype[0xA6] = function () {//LDX ZP
+	this.LDX(this.GetAddressZeroPage());
+}
+
+
+FC.prototype[0xAE] = function () {//LDX ABS
+	this.LDX(this.GetAddressAbsolute());
+}
+
+
+FC.prototype[0xB6] = function () {//LDX ZPY
+	this.LDX(this.GetAddressZeroPageY());
+}
+
+
+FC.prototype[0xBE] = function () {//LDX ABSY
+	this.LDX(this.GetAddressAbsoluteY());
+}
+
+
+FC.prototype[0xA0] = function () {//LDY IMM
+	this.LDY(this.GetAddressImmediate());
+}
+
+
+FC.prototype[0xA4] = function () {//LDY ZP
+	this.LDY(this.GetAddressZeroPage());
+}
+
+
+FC.prototype[0xAC] = function () {//LDY ABS
+	this.LDY(this.GetAddressAbsolute());
+}
+
+
+FC.prototype[0xB4] = function () {//LDY ZPX
+	this.LDY(this.GetAddressZeroPageX());
+}
+
+
+FC.prototype[0xBC] = function () {//LDY ABSX
+	this.LDY(this.GetAddressAbsoluteX());
+}
+
+
+FC.prototype[0x81] = function () {//STA XIND
+	this.STA(this.GetAddressIndirectX());
+}
+
+
+FC.prototype[0x85] = function () {//STA ZP
+	this.STA(this.GetAddressZeroPage());
+}
+
+
+FC.prototype[0x8D] = function () {//STA ABS
+	this.STA(this.GetAddressAbsolute());
+}
+
+
+FC.prototype[0x91] = function () {//STA INDY
+	this.STA(this.GetAddressIndirectY());
+}
+
+
+FC.prototype[0x95] = function () {//STA ZPX
+	this.STA(this.GetAddressZeroPageX());
+}
+
+
+FC.prototype[0x99] = function () {//STA ABSY
+	this.STA(this.GetAddressAbsoluteY());
+}
+
+
+FC.prototype[0x9D] = function () {//STA ABSX
+	this.STA(this.GetAddressAbsoluteX());
+}
+
+
+FC.prototype[0x86] = function () {//STX ZP
+	this.STX(this.GetAddressZeroPage());
+}
+
+
+FC.prototype[0x8E] = function () {//STX ABS
+	this.STX(this.GetAddressAbsolute());
+}
+
+
+FC.prototype[0x96] = function () {//STX ZPY
+	this.STX(this.GetAddressZeroPageY());
+}
+
+
+FC.prototype[0x84] = function () {//STY ZP
+	this.STY(this.GetAddressZeroPage());
+}
+
+
+FC.prototype[0x8C] = function () {//STY ABS
+	this.STY(this.GetAddressAbsolute());
+}
+
+
+FC.prototype[0x94] = function () {//STY ZPX
+	this.STY(this.GetAddressZeroPageX());
+}
+
+
+FC.prototype[0x8A] = function () {//TXA
+	this.A = this.X;
+	this.P = this.P & 0x7D | this.ZNCacheTable[this.A];
+}
+
+
+FC.prototype[0x98] = function () {//TYA
+	this.A = this.Y;
+	this.P = this.P & 0x7D | this.ZNCacheTable[this.A];
+}
+
+
+FC.prototype[0x9A] = function () {//TXS
+	this.S = this.X;
+}
+
+
+FC.prototype[0xA8] = function () {//TAY
+	this.Y = this.A;
+	this.P = this.P & 0x7D | this.ZNCacheTable[this.A];
+}
+
+
+FC.prototype[0xAA] = function () {//TAX
+	this.X = this.A;
+	this.P = this.P & 0x7D | this.ZNCacheTable[this.A];
+}
+
+
+FC.prototype[0xBA] = function () {//TSX
+	this.X = this.S;
+	this.P = this.P & 0x7D | this.ZNCacheTable[this.X];
+}
+
+
+FC.prototype[0x08] = function () {//PHP
+	this.Push(this.P | 0x30);
+}
+
+
+FC.prototype[0x28] = function () {//PLP
+	this.P = this.Pop();
+}
+
+
+FC.prototype[0x48] = function () {//PHA
+	this.Push(this.A);
+}
+
+
+FC.prototype[0x68] = function () {//PLA
+	this.A = this.Pop();
+	this.P = this.P & 0x7D | this.ZNCacheTable[this.A];
+}
+
+
+FC.prototype[0x61] = function () {//ADC XIND
+	this.ADC(this.GetAddressIndirectX());
+}
+
+
+FC.prototype[0x65] = function () {//ADC ZP
+	this.ADC(this.GetAddressZeroPage());
+}
+
+
+FC.prototype[0x69] = function () {//ADC IMM
+	this.ADC(this.GetAddressImmediate());
+}
+
+
+FC.prototype[0x6D] = function () {//ADC ABS
+	this.ADC(this.GetAddressAbsolute());
+}
+
+
+FC.prototype[0x71] = function () {//ADC INDY
+	this.ADC(this.GetAddressIndirectY());
+}
+
+
+FC.prototype[0x75] = function () {//ADC ZPX
+	this.ADC(this.GetAddressZeroPageX());
+}
+
+
+FC.prototype[0x79] = function () {//ADC ABSY
+	this.ADC(this.GetAddressAbsoluteY());
+}
+
+
+FC.prototype[0x7D] = function () {//ADC ABSX
+	this.ADC(this.GetAddressAbsoluteX());
+}
+
+
+FC.prototype[0xE1] = function () {//SBC XIND
+	this.SBC(this.GetAddressIndirectX());
+}
+
+
+FC.prototype[0xE5] = function () {//SBC ZP
+	this.SBC(this.GetAddressZeroPage());
+}
+
+
+FC.prototype[0xE9] = function () {//SBC IMM
+	this.SBC(this.GetAddressImmediate());
+}
+
+
+FC.prototype[0xED] = function () {//SBC ABS
+	this.SBC(this.GetAddressAbsolute());
+}
+
+
+FC.prototype[0xF1] = function () {//SBC INDY
+	this.SBC(this.GetAddressIndirectY());
+}
+
+
+FC.prototype[0xF5] = function () {//SBC ZPX
+	this.SBC(this.GetAddressZeroPageX());
+}
+
+
+FC.prototype[0xF9] = function () {//SBC ABSY
+	this.SBC(this.GetAddressAbsoluteY());
+}
+
+
+FC.prototype[0xFD] = function () {//SBC ABSX
+	this.SBC(this.GetAddressAbsoluteX());
+}
+
+
+FC.prototype[0xC1] = function () {//CMP XIND
+	this.CMP(this.GetAddressIndirectX());
+}
+
+
+FC.prototype[0xC5] = function () {//CMP ZP
+	this.CMP(this.GetAddressZeroPage());
+}
+
+
+FC.prototype[0xC9] = function () {//CMP IMM
+	this.CMP(this.GetAddressImmediate());
+}
+
+
+FC.prototype[0xCD] = function () {//CMP ABS
+	this.CMP(this.GetAddressAbsolute());
+}
+
+
+FC.prototype[0xD1] = function () {//CMP INDY
+	this.CMP(this.GetAddressIndirectY());
+}
+
+
+FC.prototype[0xD5] = function () {//CMP ZPX
+	this.CMP(this.GetAddressZeroPageX());
+}
+
+
+FC.prototype[0xD9] = function () {//CMP ABSY
+	this.CMP(this.GetAddressAbsoluteY());
+}
+
+
+FC.prototype[0xDD] = function () {//CMP ABSX
+	this.CMP(this.GetAddressAbsoluteX());
+}
+
+
+FC.prototype[0xE0] = function () {//CPX IMM
+	this.CPX(this.GetAddressImmediate());
+}
+
+
+FC.prototype[0xE4] = function () {//CPX ZP
+	this.CPX(this.GetAddressZeroPage());
+}
+
+
+FC.prototype[0xEC] = function () {//CPX ABS
+	this.CPX(this.GetAddressAbsolute());
+}
+
+
+FC.prototype[0xC0] = function () {//CPY IMM
+	this.CPY(this.GetAddressImmediate());
+}
+
+
+FC.prototype[0xC4] = function () {//CPY ZP
+	this.CPY(this.GetAddressZeroPage());
+}
+
+
+FC.prototype[0xCC] = function () {//CPY ABS
+	this.CPY(this.GetAddressAbsolute());
+}
+
+
+FC.prototype[0x21] = function () {//AND XIND
+	this.AND(this.GetAddressIndirectX());
+}
+
+
+FC.prototype[0x25] = function () {//AND ZP
+	this.AND(this.GetAddressZeroPage());
+}
+
+
+FC.prototype[0x29] = function () {//AND IMM
+	this.AND(this.GetAddressImmediate());
+}
+
+
+FC.prototype[0x2D] = function () {//AND ABS
+	this.AND(this.GetAddressAbsolute());
+}
+
+
+FC.prototype[0x31] = function () {//AND INDY
+	this.AND(this.GetAddressIndirectY());
+}
+
+
+FC.prototype[0x35] = function () {//AND ZPX
+	this.AND(this.GetAddressZeroPageX());
+}
+
+
+FC.prototype[0x39] = function () {//AND ABSY
+	this.AND(this.GetAddressAbsoluteY());
+}
+
+
+FC.prototype[0x3D] = function () {//AND ABSX
+	this.AND(this.GetAddressAbsoluteX());
+}
+
+
+FC.prototype[0x41] = function () {//EOR XIND
+	this.EOR(this.GetAddressIndirectX());
+}
+
+
+FC.prototype[0x45] = function () {//EOR ZP
+	this.EOR(this.GetAddressZeroPage());
+}
+
+
+FC.prototype[0x49] = function () {//EOR IMM
+	this.EOR(this.GetAddressImmediate());
+}
+
+
+FC.prototype[0x4D] = function () {//EOR ABS
+	this.EOR(this.GetAddressAbsolute());
+}
+
+
+FC.prototype[0x51] = function () {//EOR INDY
+	this.EOR(this.GetAddressIndirectY());
+}
+
+
+FC.prototype[0x55] = function () {//EOR ZPX
+	this.EOR(this.GetAddressZeroPageX());
+}
+
+
+FC.prototype[0x59] = function () {//EOR ABSY
+	this.EOR(this.GetAddressAbsoluteY());
+}
+
+
+FC.prototype[0x5D] = function () {//EOR ABSX
+	this.EOR(this.GetAddressAbsoluteX());
+}
+
+
+FC.prototype[0x01] = function () {//ORA XIND
+	this.ORA(this.GetAddressIndirectX());
+}
+
+
+FC.prototype[0x05] = function () {//ORA ZP
+	this.ORA(this.GetAddressZeroPage());
+}
+
+
+FC.prototype[0x09] = function () {//ORA IMM
+	this.ORA(this.GetAddressImmediate());
+}
+
+
+FC.prototype[0x0D] = function () {//ORA ABS
+	this.ORA(this.GetAddressAbsolute());
+}
+
+
+FC.prototype[0x11] = function () {//ORA INDY
+	this.ORA(this.GetAddressIndirectY());
+}
+
+
+FC.prototype[0x15] = function () {//ORA ZPX
+	this.ORA(this.GetAddressZeroPageX());
+}
+
+
+FC.prototype[0x19] = function () {//ORA ABSY
+	this.ORA(this.GetAddressAbsoluteY());
+}
+
+
+FC.prototype[0x1D] = function () {//ORA ABSX
+	this.ORA(this.GetAddressAbsoluteX());
+}
+
+
+FC.prototype[0x24] = function () {//BIT ZP
+	this.BIT(this.GetAddressZeroPage());
+}
+
+
+FC.prototype[0x2C] = function () {//BIT ABS
+	this.BIT(this.GetAddressAbsolute());
+}
+
+
+FC.prototype[0x06] = function () {//ASL ZP
+	this.ASL(this.GetAddressZeroPage());
+}
+
+
+FC.prototype[0x0A] = function () {//ASL A
+	this.A = this.ASL_Sub(this.A);
+}
+
+
+FC.prototype[0x0E] = function () {//ASL ABS
+	this.ASL(this.GetAddressAbsolute());
+}
+
+
+FC.prototype[0x16] = function () {//ASL ZPX
+	this.ASL(this.GetAddressZeroPageX());
+}
+
+
+FC.prototype[0x1E] = function () {//ASL ABSX
+	this.ASL(this.GetAddressAbsoluteX());
+}
+
+
+FC.prototype[0x46] = function () {//LSR ZP
+	this.LSR(this.GetAddressZeroPage());
+}
+
+
+FC.prototype[0x4A] = function () {//LSR A
+	this.A = this.LSR_Sub(this.A);
+}
+
+
+FC.prototype[0x4E] = function () {//LSR ABS
+	this.LSR(this.GetAddressAbsolute());
+}
+
+
+FC.prototype[0x56] = function () {//LSR ZPX
+	this.LSR(this.GetAddressZeroPageX());
+}
+
+
+FC.prototype[0x5E] = function () {//LSR ABSX
+	this.LSR(this.GetAddressAbsoluteX());
+}
+
+
+FC.prototype[0x26] = function () {//ROL ZP
+	this.ROL(this.GetAddressZeroPage());
+}
+
+
+FC.prototype[0x2A] = function () {//ROL A
+	this.A = this.ROL_Sub(this.A);
+}
+
+
+FC.prototype[0x2E] = function () {//ROL ABS
+	this.ROL(this.GetAddressAbsolute());
+}
+
+
+FC.prototype[0x36] = function () {//ROL ZPX
+	this.ROL(this.GetAddressZeroPageX());
+}
+
+
+FC.prototype[0x3E] = function () {//ROL ABSX
+	this.ROL(this.GetAddressAbsoluteX());
+}
+
+
+FC.prototype[0x66] = function () {//ROR ZP
+	this.ROR(this.GetAddressZeroPage());
+}
+
+
+FC.prototype[0x6A] = function () {//ROR A
+	this.A = this.ROR_Sub(this.A);
+}
+
+
+FC.prototype[0x6E] = function () {//ROR ABS
+	this.ROR(this.GetAddressAbsolute());
+}
+
+
+FC.prototype[0x76] = function () {//ROR ZPX
+	this.ROR(this.GetAddressZeroPageX());
+}
+
+
+FC.prototype[0x7E] = function () {//ROR ABSX
+	this.ROR(this.GetAddressAbsoluteX());
+}
+
+
+FC.prototype[0xE6] = function () {//INC ZP
+	this.INC(this.GetAddressZeroPage());
+}
+
+
+FC.prototype[0xEE] = function () {//INC ABS
+	this.INC(this.GetAddressAbsolute());
+}
+
+
+FC.prototype[0xF6] = function () {//INC ZPX
+	this.INC(this.GetAddressZeroPageX());
+}
+
+
+FC.prototype[0xFE] = function () {//INC ABSX
+	this.INC(this.GetAddressAbsoluteX());
+}
+
+
+FC.prototype[0xE8] = function () {//INX
+	this.X = (this.X + 1) & 0xFF;
+	this.P = this.P & 0x7D | this.ZNCacheTable[this.X];
+}
+
+
+FC.prototype[0xC8] = function () {//INY
+	this.Y = (this.Y + 1) & 0xFF;
+	this.P = this.P & 0x7D | this.ZNCacheTable[this.Y]; 
+}
+
+
+FC.prototype[0xC6] = function () {//DEC ZP
+	this.DEC(this.GetAddressZeroPage());
+}
+
+
+FC.prototype[0xCE] = function () {//DEC ABS
+	this.DEC(this.GetAddressAbsolute());
+}
+
+
+FC.prototype[0xD6] = function () {//DEC ZPX
+	this.DEC(this.GetAddressZeroPageX());
+}
+
+
+FC.prototype[0xDE] = function () {//DEC ABSX
+	this.DEC(this.GetAddressAbsoluteX());
+}
+
+
+FC.prototype[0xCA] = function () {//DEX
+	this.X = (this.X - 1) & 0xFF;
+	this.P = this.P & 0x7D | this.ZNCacheTable[this.X];
+}
+
+
+FC.prototype[0x88] = function () {//DEY
+	this.Y = (this.Y - 1) & 0xFF;
+	this.P = this.P & 0x7D | this.ZNCacheTable[this.Y];
+}
+
+
+FC.prototype[0x18] = function () {//CLC
+	this.P &= 0xFE;
+}
+
+
+FC.prototype[0x58] = function () {//CLI
+	this.P &= 0xFB;
+}
+
+
+FC.prototype[0xB8] = function () {//CLV
+	this.P &= 0xBF;
+}
+
+
+FC.prototype[0xD8] = function () {//CLD
+	this.P &= 0xF7;
+}
+
+
+FC.prototype[0x38] = function () {//SEC
+	this.P |= 0x01;
+}
+
+
+FC.prototype[0x78] = function () {//SEI
+	this.P |= 0x04;
+}
+
+
+FC.prototype[0xF8] = function () {//SED
+	this.P |= 0x08;
+}
+
+
+FC.prototype[0xEA] = function () {//NOP
+}
+
+
+FC.prototype[0x00] = function () {//BRK
+	this.Push(++this.PC >> 8);
+	this.Push(this.PC & 0xFF);
+	this.Push(this.P | 0x30);
+	this.P |= 0x14;
+	this.PC = this.Get16(0xFFFE);
+}
+
+
+FC.prototype[0x4C] = function () {//JMP ABS
+	this.PC = this.GetAddressAbsolute();
+}
+
+
+FC.prototype[0x6C] = function () {//JMP IND
+	var address = this.GetAddressAbsolute();
+	var tmp = (((address + 1) & 0x00FF) | (address & 0xFF00));
+	this.PC = this.Get(address) | (this.Get(tmp) << 8);
+}
+
+
+FC.prototype[0x20] = function () {//JSR ABS
+	var PC = (this.PC + 1) & 0xFFFF;
+	this.Push(PC >> 8);
+	this.Push(PC & 0xFF);
+	this.PC = this.GetAddressAbsolute();
+}
+
+
+FC.prototype[0x60] = function () {//RTS
+	this.PC = (this.Pop() | (this.Pop() << 8)) + 1;
+}
+
+
+FC.prototype[0x40] = function () {//RTI
+	this.P = this.Pop();
+	this.PC = this.Pop() | (this.Pop() << 8);
+}
+
+
+FC.prototype[0x10] = function () {//BPL REL
+	this.Branch((this.P & 0x80) == 0);
+}
+
+
+FC.prototype[0x30] = function () {//BMI REL
+	this.Branch((this.P & 0x80) != 0);
+}
+
+
+FC.prototype[0x50] = function () {//BVC REL
+	this.Branch((this.P & 0x40) == 0);
+}
+
+
+FC.prototype[0x70] = function () {//BVS REL
+	this.Branch((this.P & 0x40) != 0);
+}
+
+
+FC.prototype[0x90] = function () {//BCC REL
+	this.Branch((this.P & 0x01) == 0);
+}
+
+
+FC.prototype[0xB0] = function () {//BCS REL
+	this.Branch((this.P & 0x01) != 0);
+}
+
+
+FC.prototype[0xD0] = function () {//BNE REL
+	this.Branch((this.P & 0x02) == 0);
+}
+
+
+FC.prototype[0xF0] = function () {//BEQ REL
+	this.Branch((this.P & 0x02) != 0);
+}
+
+
+/* Undocument */
+FC.prototype[0x0B] = function () {//ANC IMM
+	this.ANC(this.GetAddressImmediate());
+}
+
+
+FC.prototype[0x2B] = function () {//ANC IMM
+	this.ANC(this.GetAddressImmediate());
+}
+
+
+FC.prototype[0x8B] = function () {//ANE IMM
+	this.ANE(this.GetAddressImmediate());
+}
+
+
+FC.prototype[0x6B] = function () {//ARR IMM
+	this.ARR(this.GetAddressImmediate());
+}
+
+
+FC.prototype[0x4B] = function () {//ASR IMM
+	this.ASR(this.GetAddressImmediate());
+}
+
+
+FC.prototype[0xC7] = function () {//DCP ZP
+	this.DCP(this.GetAddressZeroPage());
+}
+
+
+FC.prototype[0xD7] = function () {//DCP ZPX
+	this.DCP(this.GetAddressZeroPageX());
+}
+
+
+FC.prototype[0xCF] = function () {//DCP ABS
+	this.DCP(this.GetAddressAbsolute());
+}
+
+
+FC.prototype[0xDF] = function () {//DCP ABSX
+	this.DCP(this.GetAddressAbsoluteX());
+}
+
+
+FC.prototype[0xDB] = function () {//DCP ABSY
+	this.DCP(this.GetAddressAbsoluteY());
+}
+
+
+FC.prototype[0xC3] = function () {//DCP XIND
+	this.DCP(this.GetAddressIndirectX());
+}
+
+
+FC.prototype[0xD3] = function () {//DCP INDY
+	this.DCP(this.GetAddressIndirectY());
+}
+
+
+FC.prototype[0xE7] = function () {//ISB ZP
+	this.ISB(this.GetAddressZeroPage());
+}
+
+
+FC.prototype[0xF7] = function () {//ISB ZPX
+	this.ISB(this.GetAddressZeroPageX());
+}
+
+
+FC.prototype[0xEF] = function () {//ISB ABS
+	this.ISB(this.GetAddressAbsolute());
+}
+
+
+FC.prototype[0xFF] = function () {//ISB ABSX
+	this.ISB(this.GetAddressAbsoluteX());
+}
+
+
+FC.prototype[0xFB] = function () {//ISB ABSY
+	this.ISB(this.GetAddressAbsoluteY());
+}
+
+
+FC.prototype[0xE3] = function () {//ISB XIND
+	this.ISB(this.GetAddressIndirectX());
+}
+
+
+FC.prototype[0xF3] = function () {//ISB INDY
+	this.ISB(this.GetAddressIndirectY());
+}
+
+
+FC.prototype[0xBB] = function () {//LAS ABSY
+	this.LAS(this.GetAddressAbsoluteY());
+}
+
+
+FC.prototype[0xA7] = function () {//LAX ZP
+	this.LAX(this.GetAddressZeroPage());
+}
+
+
+FC.prototype[0xB7] = function () {//LAX ZPY
+	this.LAX(this.GetAddressZeroPageY());
+}
+
+
+FC.prototype[0xAF] = function () {//LAX ABS
+	this.LAX(this.GetAddressAbsolute());
+}
+
+
+FC.prototype[0xBF] = function () {//LAX ABSY
+	this.LAX(this.GetAddressAbsoluteY());
+}
+
+
+FC.prototype[0xA3] = function () {//LAX XIND
+	this.LAX(this.GetAddressIndirectX());
+}
+
+
+FC.prototype[0xB3] = function () {//LAX INDY
+	this.LAX(this.GetAddressIndirectY());
+}
+
+
+FC.prototype[0xAB] = function () {//LXA IMM
+	this.LXA(this.GetAddressImmediate());
+}
+
+
+FC.prototype[0x27] = function () {//RLA ZP
+	this.RLA(this.GetAddressZeroPage());
+}
+
+
+FC.prototype[0x37] = function () {//RLA ZPX
+	this.RLA(this.GetAddressZeroPageX());
+}
+
+
+FC.prototype[0x2F] = function () {//RLA ABS
+	this.RLA(this.GetAddressAbsolute());
+}
+
+
+FC.prototype[0x3F] = function () {//RLA ABSX
+	this.RLA(this.GetAddressAbsoluteX());
+}
+
+
+FC.prototype[0x3B] = function () {//RLA ABSY
+	this.RLA(this.GetAddressAbsoluteY());
+}
+
+
+FC.prototype[0x23] = function () {//RLA XIND
+	this.RLA(this.GetAddressIndirectX());
+}
+
+
+FC.prototype[0x33] = function () {//RLA INDY
+	this.RLA(this.GetAddressIndirectY());
+}
+
+
+FC.prototype[0x67] = function () {//RRA ZP
+	this.RRA(this.GetAddressZeroPage());
+}
+
+
+FC.prototype[0x77] = function () {//RRA ZPX
+	this.RRA(this.GetAddressZeroPageX());
+}
+
+
+FC.prototype[0x6F] = function () {//RRA ABS
+	this.RRA(this.GetAddressAbsolute());
+}
+
+
+FC.prototype[0x7F] = function () {//RRA ABSX
+	this.RRA(this.GetAddressAbsoluteX());
+}
+
+
+FC.prototype[0x7B] = function () {//RRA ABSY
+	this.RRA(this.GetAddressAbsoluteY());
+}
+
+
+FC.prototype[0x63] = function () {//RRA XIND
+	this.RRA(this.GetAddressIndirectX());
+}
+
+
+FC.prototype[0x73] = function () {//RRA INDY
+	this.RRA(this.GetAddressIndirectY());
+}
+
+
+FC.prototype[0x87] = function () {//SAX ZP
+	this.SAX(this.GetAddressZeroPage());
+}
+
+
+FC.prototype[0x97] = function () {//SAX ZPY
+	this.SAX(this.GetAddressZeroPageY());
+}
+
+
+FC.prototype[0x8F] = function () {//SAX ABS
+	this.SAX(this.GetAddressAbsolute());
+}
+
+
+FC.prototype[0x83] = function () {//SAX XIND
+	this.SAX(this.GetAddressIndirectX());
+}
+
+
+FC.prototype[0xCB] = function () {//SBX IMM
+	this.SBX(this.GetAddressImmediate());
+}
+
+
+FC.prototype[0x9F] = function () {//SHA ABSY
+	this.SHA(this.GetAddressAbsoluteY());
+}
+
+
+FC.prototype[0x93] = function () {//SHA INDY
+	this.SHA(this.GetAddressIndirectY());
+}
+
+
+FC.prototype[0x9B] = function () {//SHS ABSY
+	this.SHS(this.GetAddressAbsoluteY());
+}
+
+
+FC.prototype[0x9E] = function () {//SHX ABSY
+	this.SHX(this.GetAddressAbsoluteY());
+}
+
+
+FC.prototype[0x9C] = function () {//SHY ABSX
+	this.SHY(this.GetAddressAbsoluteX());
+}
+
+
+FC.prototype[0x07] = function () {//SLO ZP
+	this.SLO(this.GetAddressZeroPage());
+}
+
+
+FC.prototype[0x17] = function () {//SLO ZPX
+	this.SLO(this.GetAddressZeroPageX());
+}
+
+
+FC.prototype[0x0F] = function () {//SLO ABS
+	this.SLO(this.GetAddressAbsolute());
+}
+
+
+FC.prototype[0x1F] = function () {//SLO ABSX
+	this.SLO(this.GetAddressAbsoluteX());
+}
+
+
+FC.prototype[0x1B] = function () {//SLO ABSY
+	this.SLO(this.GetAddressAbsoluteY());
+}
+
+
+FC.prototype[0x03] = function () {//SLO XIND
+	this.SLO(this.GetAddressIndirectX());
+}
+
+
+FC.prototype[0x13] = function () {//SLO INDY
+	this.SLO(this.GetAddressIndirectY());
+}
+
+
+FC.prototype[0x47] = function () {//SRE ZP
+	this.SRE(this.GetAddressZeroPage());
+}
+
+
+FC.prototype[0x57] = function () {//SRE ZPX
+	this.SRE(this.GetAddressZeroPageX());
+}
+
+
+FC.prototype[0x4F] = function () {//SRE ABS
+	this.SRE(this.GetAddressAbsolute());
+}
+
+
+FC.prototype[0x5F] = function () {//SRE ABSX
+	this.SRE(this.GetAddressAbsoluteX());
+}
+
+
+FC.prototype[0x5B] = function () {//SRE ABSY
+	this.SRE(this.GetAddressAbsoluteY());
+}
+
+
+FC.prototype[0x43] = function () {//SRE XIND
+	this.SRE(this.GetAddressIndirectX());
+}
+
+
+FC.prototype[0x53] = function () {//SRE INDY
+	this.SRE(this.GetAddressIndirectY());
+}
+
+
+FC.prototype[0xEB] = function () {//SBC IMM
+	this.SBC(this.GetAddressImmediate());
+}
+
+
+FC.prototype[0x1A] = function () {//NOP
+}
+
+
+FC.prototype[0x3A] = function () {//NOP
+}
+
+
+FC.prototype[0x5A] = function () {//NOP
+}
+
+
+FC.prototype[0x7A] = function () {//NOP
+}
+
+
+FC.prototype[0xDA] = function () {//NOP
+}
+
+
+FC.prototype[0xFA] = function () {//NOP
+}
+
+
+FC.prototype[0x80] = function () {//DOP IMM
+	this.PC++;
+}
+
+
+FC.prototype[0x82] = function () {//DOP IMM
+	this.PC++;
+}
+
+
+FC.prototype[0x89] = function () {//DOP IMM
+	this.PC++;
+}
+
+
+FC.prototype[0xC2] = function () {//DOP IMM
+	this.PC++;
+}
+
+
+FC.prototype[0xE2] = function () {//DOP IMM
+	this.PC++;
+}
+
+
+FC.prototype[0x04] = function () {//DOP ZP
+	this.PC++;
+}
+
+
+FC.prototype[0x44] = function () {//DOP ZP
+	this.PC++;
+}
+
+
+FC.prototype[0x64] = function () {//DOP ZP
+	this.PC++;
+}
+
+
+FC.prototype[0x14] = function () {//DOP ZPX
+	this.PC++;
+}
+
+
+FC.prototype[0x34] = function () {//DOP ZPX
+	this.PC++;
+}
+
+
+FC.prototype[0x54] = function () {//DOP ZPX
+	this.PC++;
+}
+
+
+FC.prototype[0x74] = function () {//DOP ZPX
+	this.PC++;
+}
+
+
+FC.prototype[0xD4] = function () {//DOP ZPX
+	this.PC++;
+}
+
+
+FC.prototype[0xF4] = function () {//DOP ZPX
+	this.PC++;
+}
+
+
+FC.prototype[0x0C] = function () {//TOP ABS
+	this.PC += 2;
+}
+
+
+FC.prototype[0x1C] = function () {//TOP ABSX
+	this.PC += 2;
+}
+
+
+FC.prototype[0x3C] = function () {//TOP ABSX
+	this.PC += 2;
+}
+
+
+FC.prototype[0x5C] = function () {//TOP ABSX
+	this.PC += 2;
+}
+
+
+FC.prototype[0x7C] = function () {//TOP ABSX
+	this.PC += 2;
+}
+
+
+FC.prototype[0xDC] = function () {//TOP ABSX
+	this.PC += 2;
+}
+
+
+FC.prototype[0xFC] = function () {//TOP ABSX
+	this.PC += 2;
+}
+
+
+FC.prototype[0x02] = function () {//JAM
+	alert("oops");
+	this.PC--;
+}
+
+
+FC.prototype[0x12] = function () {//JAM
+	alert("oops");
+	this.PC--;
+}
+
+
+FC.prototype[0x22] = function () {//JAM
+	alert("oops");
+	this.PC--;
+}
+
+
+FC.prototype[0x32] = function () {//JAM
+	alert("oops");
+	this.PC--;
+}
+
+
+FC.prototype[0x42] = function () {//JAM
+	alert("oops");
+	this.PC--;
+}
+
+
+FC.prototype[0x52] = function () {//JAM
+	alert("oops");
+	this.PC--;
+}
+
+
+FC.prototype[0x62] = function () {//JAM
+	alert("oops");
+	this.PC--;
+}
+
+
+FC.prototype[0x72] = function () {//JAM
+	alert("oops");
+	this.PC--;
+}
+
+
+FC.prototype[0x92] = function () {//JAM
+	alert("oops");
+	this.PC--;
+}
+
+
+FC.prototype[0xB2] = function () {//JAM
+	alert("oops");
+	this.PC--;
+}
+
+
+FC.prototype[0xD2] = function () {//JAM
+	alert("oops");
+	this.PC--;
+}
+
+
+FC.prototype[0xF2] = function () {//JAM
+	alert("oops");
+	this.PC--;
+}
+
+
 FC.prototype.CpuRun = function () {
 	this.DrawFlag = false;
 	var cycletable = this.CycleTable;
@@ -1062,781 +2377,7 @@ FC.prototype.CpuRun = function () {
 		this.PpuRun();
 		this.ApuRun();
 		this.CPUClock = 0;
-
-		switch(opcode){
-			case 0xA1://LDA XIND
-				this.LDA(this.GetAddressIndirectX());
-				break;
-			case 0xA5://LDA ZP
-				this.LDA(this.GetAddressZeroPage());
-				break;
-			case 0xA9://LDA IMM
-				this.LDA(this.GetAddressImmediate());
-				break;
-			case 0xAD://LDA ABS
-				this.LDA(this.GetAddressAbsolute());
-				break;
-			case 0xB1://LDA INDY
-				this.LDA(this.GetAddressIndirectY());
-				break;
-			case 0xB5://LDA ZPX
-				this.LDA(this.GetAddressZeroPageX());
-				break;
-			case 0xB9://LDA ABSY
-				this.LDA(this.GetAddressAbsoluteY());
-				break;
-			case 0xBD://LDA ABSX
-				this.LDA(this.GetAddressAbsoluteX());
-				break;
-
-			case 0xA2://LDX IMM
-				this.LDX(this.GetAddressImmediate());
-				break;
-			case 0xA6://LDX ZP
-				this.LDX(this.GetAddressZeroPage());
-				break;
-			case 0xAE://LDX ABS
-				this.LDX(this.GetAddressAbsolute());
-				break;
-			case 0xB6://LDX ZPY
-				this.LDX(this.GetAddressZeroPageY());
-				break;
-			case 0xBE://LDX ABSY
-				this.LDX(this.GetAddressAbsoluteY());
-				break;
-
-			case 0xA0://LDY IMM
-				this.LDY(this.GetAddressImmediate());
-				break;
-			case 0xA4://LDY ZP
-				this.LDY(this.GetAddressZeroPage());
-				break;
-			case 0xAC://LDY ABS
-				this.LDY(this.GetAddressAbsolute());
-				break;
-			case 0xB4://LDY ZPX
-				this.LDY(this.GetAddressZeroPageX());
-				break;
-			case 0xBC://LDY ABSX
-				this.LDY(this.GetAddressAbsoluteX());
-				break;
-
-			case 0x81://STA XIND
-				this.STA(this.GetAddressIndirectX());
-				break;
-			case 0x85://STA ZP
-				this.STA(this.GetAddressZeroPage());
-				break;
-			case 0x8D://STA ABS
-				this.STA(this.GetAddressAbsolute());
-				break;
-			case 0x91://STA INDY
-				this.STA(this.GetAddressIndirectY());
-				break;
-			case 0x95://STA ZPX
-				this.STA(this.GetAddressZeroPageX());
-				break;
-			case 0x99://STA ABSY
-				this.STA(this.GetAddressAbsoluteY());
-				break;
-			case 0x9D://STA ABSX
-				this.STA(this.GetAddressAbsoluteX());
-				break;
-
-			case 0x86://STX ZP
-				this.STX(this.GetAddressZeroPage());
-				break;
-			case 0x8E://STX ABS
-				this.STX(this.GetAddressAbsolute());
-				break;
-			case 0x96://STX ZPY
-				this.STX(this.GetAddressZeroPageY());
-				break;
-
-			case 0x84://STY ZP
-				this.STY(this.GetAddressZeroPage());
-				break;
-			case 0x8C://STY ABS
-				this.STY(this.GetAddressAbsolute());
-				break;
-			case 0x94://STY ZPX
-				this.STY(this.GetAddressZeroPageX());
-				break;
-
-			case 0x8A://TXA
-				this.A = this.X;
-				this.P = this.P & 0x7D | this.ZNCacheTable[this.A];
-				break;
-			case 0x98://TYA
-				this.A = this.Y;
-				this.P = this.P & 0x7D | this.ZNCacheTable[this.A];
-				break;
-			case 0x9A://TXS
-				this.S = this.X;
-				break;
-			case 0xA8://TAY
-				this.Y = this.A;
-				this.P = this.P & 0x7D | this.ZNCacheTable[this.A];
-				break;
-			case 0xAA://TAX
-				this.X = this.A;
-				this.P = this.P & 0x7D | this.ZNCacheTable[this.A];
-				break;
-			case 0xBA://TSX
-				this.X = this.S;
-				this.P = this.P & 0x7D | this.ZNCacheTable[this.X];
-				break;
-
-			case 0x08://PHP
-				this.Push(this.P | 0x30);
-				break;
-			case 0x28://PLP
-				this.P = this.Pop();
-				break;
-			case 0x48://PHA
-				this.Push(this.A);
-				break;
-			case 0x68://PLA
-				this.A = this.Pop();
-				this.P = this.P & 0x7D | this.ZNCacheTable[this.A];
-				break;
-
-			case 0x61://ADC XIND
-				this.ADC(this.GetAddressIndirectX());
-				break;
-			case 0x65://ADC ZP
-				this.ADC(this.GetAddressZeroPage());
-				break;
-			case 0x69://ADC IMM
-				this.ADC(this.GetAddressImmediate());
-				break;
-			case 0x6D://ADC ABS
-				this.ADC(this.GetAddressAbsolute());
-				break;
-			case 0x71://ADC INDY
-				this.ADC(this.GetAddressIndirectY());
-				break;
-			case 0x75://ADC ZPX
-				this.ADC(this.GetAddressZeroPageX());
-				break;
-			case 0x79://ADC ABSY
-				this.ADC(this.GetAddressAbsoluteY());
-				break;
-			case 0x7D://ADC ABSX
-				this.ADC(this.GetAddressAbsoluteX());
-				break;
-
-			case 0xE1://SBC XIND
-				this.SBC(this.GetAddressIndirectX());
-				break;
-			case 0xE5://SBC ZP
-				this.SBC(this.GetAddressZeroPage());
-				break;
-			case 0xE9://SBC IMM
-				this.SBC(this.GetAddressImmediate());
-				break;
-			case 0xED://SBC ABS
-				this.SBC(this.GetAddressAbsolute());
-				break;
-			case 0xF1://SBC INDY
-				this.SBC(this.GetAddressIndirectY());
-				break;
-			case 0xF5://SBC ZPX
-				this.SBC(this.GetAddressZeroPageX());
-				break;
-			case 0xF9://SBC ABSY
-				this.SBC(this.GetAddressAbsoluteY());
-				break;
-			case 0xFD://SBC ABSX
-				this.SBC(this.GetAddressAbsoluteX());
-				break;
-
-			case 0xC1://CMP XIND
-				this.CMP(this.GetAddressIndirectX());
-				break;
-			case 0xC5://CMP ZP
-				this.CMP(this.GetAddressZeroPage());
-				break;
-			case 0xC9://CMP IMM
-				this.CMP(this.GetAddressImmediate());
-				break;
-			case 0xCD://CMP ABS
-				this.CMP(this.GetAddressAbsolute());
-				break;
-			case 0xD1://CMP INDY
-				this.CMP(this.GetAddressIndirectY());
-				break;
-			case 0xD5://CMP ZPX
-				this.CMP(this.GetAddressZeroPageX());
-				break;
-			case 0xD9://CMP ABSY
-				this.CMP(this.GetAddressAbsoluteY());
-				break;
-			case 0xDD://CMP ABSX
-				this.CMP(this.GetAddressAbsoluteX());
-				break;
-
-			case 0xE0://CPX IMM
-				this.CPX(this.GetAddressImmediate());
-				break;
-			case 0xE4://CPX ZP
-				this.CPX(this.GetAddressZeroPage());
-				break;
-			case 0xEC://CPX ABS
-				this.CPX(this.GetAddressAbsolute());
-				break;
-
-			case 0xC0://CPY IMM
-				this.CPY(this.GetAddressImmediate());
-				break;
-			case 0xC4://CPY ZP
-				this.CPY(this.GetAddressZeroPage());
-				break;
-			case 0xCC://CPY ABS
-				this.CPY(this.GetAddressAbsolute());
-				break;
-
-			case 0x21://AND XIND
-				this.AND(this.GetAddressIndirectX());
-				break;
-			case 0x25://AND ZP
-				this.AND(this.GetAddressZeroPage());
-				break;
-			case 0x29://AND IMM
-				this.AND(this.GetAddressImmediate());
-				break;
-			case 0x2D://AND ABS
-				this.AND(this.GetAddressAbsolute());
-				break;
-			case 0x31://AND INDY
-				this.AND(this.GetAddressIndirectY());
-				break;
-			case 0x35://AND ZPX
-				this.AND(this.GetAddressZeroPageX());
-				break;
-			case 0x39://AND ABSY
-				this.AND(this.GetAddressAbsoluteY());
-				break;
-			case 0x3D://AND ABSX
-				this.AND(this.GetAddressAbsoluteX());
-				break;
-
-			case 0x41://EOR XIND
-				this.EOR(this.GetAddressIndirectX());
-				break;
-			case 0x45://EOR ZP
-				this.EOR(this.GetAddressZeroPage());
-				break;
-			case 0x49://EOR IMM
-				this.EOR(this.GetAddressImmediate());
-				break;
-			case 0x4D://EOR ABS
-				this.EOR(this.GetAddressAbsolute());
-				break;
-			case 0x51://EOR INDY
-				this.EOR(this.GetAddressIndirectY());
-				break;
-			case 0x55://EOR ZPX
-				this.EOR(this.GetAddressZeroPageX());
-				break;
-			case 0x59://EOR ABSY
-				this.EOR(this.GetAddressAbsoluteY());
-				break;
-			case 0x5D://EOR ABSX
-				this.EOR(this.GetAddressAbsoluteX());
-				break;
-
-			case 0x01://ORA XIND
-				this.ORA(this.GetAddressIndirectX());
-				break;
-			case 0x05://ORA ZP
-				this.ORA(this.GetAddressZeroPage());
-				break;
-			case 0x09://ORA IMM
-				this.ORA(this.GetAddressImmediate());
-				break;
-			case 0x0D://ORA ABS
-				this.ORA(this.GetAddressAbsolute());
-				break;
-			case 0x11://ORA INDY
-				this.ORA(this.GetAddressIndirectY());
-				break;
-			case 0x15://ORA ZPX
-				this.ORA(this.GetAddressZeroPageX());
-				break;
-			case 0x19://ORA ABSY
-				this.ORA(this.GetAddressAbsoluteY());
-				break;
-			case 0x1D://ORA ABSX
-				this.ORA(this.GetAddressAbsoluteX());
-				break;
-
-			case 0x24://BIT ZP
-				this.BIT(this.GetAddressZeroPage());
-				break;
-			case 0x2C://BIT ABS
-				this.BIT(this.GetAddressAbsolute());
-				break;
-
-			case 0x06://ASL ZP
-				this.ASL(this.GetAddressZeroPage());
-				break;
-			case 0x0A://ASL A
-				this.A = this.ASL_Sub(this.A);
-				break;
-			case 0x0E://ASL ABS
-				this.ASL(this.GetAddressAbsolute());
-				break;
-			case 0x16://ASL ZPX
-				this.ASL(this.GetAddressZeroPageX());
-				break;
-			case 0x1E://ASL ABSX
-				this.ASL(this.GetAddressAbsoluteX());
-				break;
-
-			case 0x46://LSR ZP
-				this.LSR(this.GetAddressZeroPage());
-				break;
-			case 0x4A://LSR A
-				this.A = this.LSR_Sub(this.A);
-				break;
-			case 0x4E://LSR ABS
-				this.LSR(this.GetAddressAbsolute());
-				break;
-			case 0x56://LSR ZPX
-				this.LSR(this.GetAddressZeroPageX());
-				break;
-			case 0x5E://LSR ABSX
-				this.LSR(this.GetAddressAbsoluteX());
-				break;
-
-			case 0x26://ROL ZP
-				this.ROL(this.GetAddressZeroPage());
-				break;
-			case 0x2A://ROL A
-				this.A = this.ROL_Sub(this.A);
-				break;
-			case 0x2E://ROL ABS
-				this.ROL(this.GetAddressAbsolute());
-				break;
-			case 0x36://ROL ZPX
-				this.ROL(this.GetAddressZeroPageX());
-				break;
-			case 0x3E://ROL ABSX
-				this.ROL(this.GetAddressAbsoluteX());
-				break;
-
-			case 0x66://ROR ZP
-				this.ROR(this.GetAddressZeroPage());
-				break;
-			case 0x6A://ROR A
-				this.A = this.ROR_Sub(this.A);
-				break;
-			case 0x6E://ROR ABS
-				this.ROR(this.GetAddressAbsolute());
-				break;
-			case 0x76://ROR ZPX
-				this.ROR(this.GetAddressZeroPageX());
-				break;
-			case 0x7E://ROR ABSX
-				this.ROR(this.GetAddressAbsoluteX());
-				break;
-
-			case 0xE6://INC ZP
-				this.INC(this.GetAddressZeroPage());
-				break;
-			case 0xEE://INC ABS
-				this.INC(this.GetAddressAbsolute());
-				break;
-			case 0xF6://INC ZPX
-				this.INC(this.GetAddressZeroPageX());
-				break;
-			case 0xFE://INC ABSX
-				this.INC(this.GetAddressAbsoluteX());
-				break;
-
-			case 0xE8://INX
-				this.X = (this.X + 1) & 0xFF;
-				this.P = this.P & 0x7D | this.ZNCacheTable[this.X];
-				break;
-			case 0xC8://INY
-				this.Y = (this.Y + 1) & 0xFF;
-				this.P = this.P & 0x7D | this.ZNCacheTable[this.Y]; 
-				break;
-
-			case 0xC6://DEC ZP
-				this.DEC(this.GetAddressZeroPage());
-				break;
-			case 0xCE://DEC ABS
-				this.DEC(this.GetAddressAbsolute());
-				break;
-			case 0xD6://DEC ZPX
-				this.DEC(this.GetAddressZeroPageX());
-				break;
-			case 0xDE://DEC ABSX
-				this.DEC(this.GetAddressAbsoluteX());
-				break;
-
-			case 0xCA://DEX
-				this.X = (this.X - 1) & 0xFF;
-				this.P = this.P & 0x7D | this.ZNCacheTable[this.X];
-				break;
-			case 0x88://DEY
-				this.Y = (this.Y - 1) & 0xFF;
-				this.P = this.P & 0x7D | this.ZNCacheTable[this.Y];
-				break;
-
-			case 0x18://CLC
-				this.P &= 0xFE;
-				break;
-			case 0x58://CLI
-				this.P &= 0xFB;
-				break;
-			case 0xB8://CLV
-				this.P &= 0xBF;
-				break;
-			case 0xD8://CLD
-				this.P &= 0xF7;
-				break;
-			case 0x38://SEC
-				this.P |= 0x01;
-				break;
-			case 0x78://SEI
-				this.P |= 0x04;
-				break;
-			case 0xF8://SED
-				this.P |= 0x08;
-				break;
-
-			case 0xEA://NOP
-				break;
-
-			case 0x00://BRK
-				this.Push(++this.PC >> 8);
-				this.Push(this.PC & 0xFF);
-				this.Push(this.P | 0x30);
-				this.P |= 0x14;
-				this.PC = this.Get16(0xFFFE);
-				break;
-
-			case 0x4C://JMP ABS
-				this.PC = this.GetAddressAbsolute();
-				break;
-			case 0x6C://JMP IND
-				var address = this.GetAddressAbsolute();
-				var tmp = (((address + 1) & 0x00FF) | (address & 0xFF00));
-				this.PC = this.Get(address) | (this.Get(tmp) << 8);
-				break;
-
-			case 0x20://JSR ABS
-				var PC = (this.PC + 1) & 0xFFFF;
-				this.Push(PC >> 8);
-				this.Push(PC & 0xFF);
-				this.PC = this.GetAddressAbsolute();
-				break;
-
-			case 0x60://RTS
-				this.PC = (this.Pop() | (this.Pop() << 8)) + 1;
-				break;
-			case 0x40://RTI
-				this.P = this.Pop();
-				this.PC = this.Pop() | (this.Pop() << 8);
-				break;
-
-			case 0x10://BPL REL
-				this.Branch((this.P & 0x80) == 0);
-				break;
-			case 0x30://BMI REL
-				this.Branch((this.P & 0x80) != 0);
-				break;
-			case 0x50://BVC REL
-				this.Branch((this.P & 0x40) == 0);
-				break;
-			case 0x70://BVS REL
-				this.Branch((this.P & 0x40) != 0);
-				break;
-			case 0x90://BCC REL
-				this.Branch((this.P & 0x01) == 0);
-				break;
-			case 0xB0://BCS REL
-				this.Branch((this.P & 0x01) != 0);
-				break;
-			case 0xD0://BNE REL
-				this.Branch((this.P & 0x02) == 0);
-				break;
-			case 0xF0://BEQ REL
-				this.Branch((this.P & 0x02) != 0);
-				break;
-
-			/* Undocument */
-			case 0x0B://ANC IMM
-			case 0x2B://ANC IMM
-				this.ANC(this.GetAddressImmediate());
-				break;
-
-			case 0x8B://ANE IMM
-				this.ANE(this.GetAddressImmediate());
-				break;
-
-			case 0x6B://ARR IMM
-				this.ARR(this.GetAddressImmediate());
-				break;
-
-			case 0x4B://ASR IMM
-				this.ASR(this.GetAddressImmediate());
-				break;
-
-			case 0xC7://DCP ZP
-				this.DCP(this.GetAddressZeroPage());
-				break;
-			case 0xD7://DCP ZPX
-				this.DCP(this.GetAddressZeroPageX());
-				break;
-			case 0xCF://DCP ABS
-				this.DCP(this.GetAddressAbsolute());
-				break;
-			case 0xDF://DCP ABSX
-				this.DCP(this.GetAddressAbsoluteX());
-				break;
-			case 0xDB://DCP ABSY
-				this.DCP(this.GetAddressAbsoluteY());
-				break;
-			case 0xC3://DCP XIND
-				this.DCP(this.GetAddressIndirectX());
-				break;
-			case 0xD3://DCP INDY
-				this.DCP(this.GetAddressIndirectY());
-				break;
-
-			case 0xE7://ISB ZP
-				this.ISB(this.GetAddressZeroPage());
-				break;
-			case 0xF7://ISB ZPX
-				this.ISB(this.GetAddressZeroPageX());
-				break;
-			case 0xEF://ISB ABS
-				this.ISB(this.GetAddressAbsolute());
-				break;
-			case 0xFF://ISB ABSX
-				this.ISB(this.GetAddressAbsoluteX());
-				break;
-			case 0xFB://ISB ABSY
-				this.ISB(this.GetAddressAbsoluteY());
-				break;
-			case 0xE3://ISB XIND
-				this.ISB(this.GetAddressIndirectX());
-				break;
-			case 0xF3://ISB INDY
-				this.ISB(this.GetAddressIndirectY());
-				break;
-
-			case 0xBB://LAS ABSY
-				this.LAS(this.GetAddressAbsoluteY());
-				break;
-
-			case 0xA7://LAX ZP
-				this.LAX(this.GetAddressZeroPage());
-				break;
-			case 0xB7://LAX ZPY
-				this.LAX(this.GetAddressZeroPageY());
-				break;
-			case 0xAF://LAX ABS
-				this.LAX(this.GetAddressAbsolute());
-				break;
-			case 0xBF://LAX ABSY
-				this.LAX(this.GetAddressAbsoluteY());
-				break;
-			case 0xA3://LAX XIND
-				this.LAX(this.GetAddressIndirectX());
-				break;
-			case 0xB3://LAX INDY
-				this.LAX(this.GetAddressIndirectY());
-				break;
-
-			case 0xAB://LXA IMM
-				this.LXA(this.GetAddressImmediate());
-				break;
-
-			case 0x27://RLA ZP
-				this.RLA(this.GetAddressZeroPage());
-				break;
-			case 0x37://RLA ZPX
-				this.RLA(this.GetAddressZeroPageX());
-				break;
-			case 0x2F://RLA ABS
-				this.RLA(this.GetAddressAbsolute());
-				break;
-			case 0x3F://RLA ABSX
-				this.RLA(this.GetAddressAbsoluteX());
-				break;
-			case 0x3B://RLA ABSY
-				this.RLA(this.GetAddressAbsoluteY());
-				break;
-			case 0x23://RLA XIND
-				this.RLA(this.GetAddressIndirectX());
-				break;
-			case 0x33://RLA INDY
-				this.RLA(this.GetAddressIndirectY());
-				break;
-
-			case 0x67://RRA ZP
-				this.RRA(this.GetAddressZeroPage());
-				break;
-			case 0x77://RRA ZPX
-				this.RRA(this.GetAddressZeroPageX());
-				break;
-			case 0x6F://RRA ABS
-				this.RRA(this.GetAddressAbsolute());
-				break;
-			case 0x7F://RRA ABSX
-				this.RRA(this.GetAddressAbsoluteX());
-				break;
-			case 0x7B://RRA ABSY
-				this.RRA(this.GetAddressAbsoluteY());
-				break;
-			case 0x63://RRA XIND
-				this.RRA(this.GetAddressIndirectX());
-				break;
-			case 0x73://RRA INDY
-				this.RRA(this.GetAddressIndirectY());
-				break;
-
-			case 0x87://SAX ZP
-				this.SAX(this.GetAddressZeroPage());
-				break;
-			case 0x97://SAX ZPY
-				this.SAX(this.GetAddressZeroPageY());
-				break;
-			case 0x8F://SAX ABS
-				this.SAX(this.GetAddressAbsolute());
-				break;
-			case 0x83://SAX XIND
-				this.SAX(this.GetAddressIndirectX());
-				break;
-
-			case 0xCB://SBX IMM
-				this.SBX(this.GetAddressImmediate());
-				break;
-
-			case 0x9F://SHA ABSY
-				this.SHA(this.GetAddressAbsoluteY());
-				break;
-			case 0x93://SHA INDY
-				this.SHA(this.GetAddressIndirectY());
-				break;
-
-			case 0x9B://SHS ABSY
-				this.SHS(this.GetAddressAbsoluteY());
-				break;
-
-			case 0x9E://SHX ABSY
-				this.SHX(this.GetAddressAbsoluteY());
-				break;
-
-			case 0x9C://SHY ABSX
-				this.SHY(this.GetAddressAbsoluteX());
-				break;
-
-			case 0x07://SLO ZP
-				this.SLO(this.GetAddressZeroPage());
-				break;
-			case 0x17://SLO ZPX
-				this.SLO(this.GetAddressZeroPageX());
-				break;
-			case 0x0F://SLO ABS
-				this.SLO(this.GetAddressAbsolute());
-				break;
-			case 0x1F://SLO ABSX
-				this.SLO(this.GetAddressAbsoluteX());
-				break;
-			case 0x1B://SLO ABSY
-				this.SLO(this.GetAddressAbsoluteY());
-				break;
-			case 0x03://SLO XIND
-				this.SLO(this.GetAddressIndirectX());
-				break;
-			case 0x13://SLO INDY
-				this.SLO(this.GetAddressIndirectY());
-				break;
-
-			case 0x47://SRE ZP
-				this.SRE(this.GetAddressZeroPage());
-				break;
-			case 0x57://SRE ZPX
-				this.SRE(this.GetAddressZeroPageX());
-				break;
-			case 0x4F://SRE ABS
-				this.SRE(this.GetAddressAbsolute());
-				break;
-			case 0x5F://SRE ABSX
-				this.SRE(this.GetAddressAbsoluteX());
-				break;
-			case 0x5B://SRE ABSY
-				this.SRE(this.GetAddressAbsoluteY());
-				break;
-			case 0x43://SRE XIND
-				this.SRE(this.GetAddressIndirectX());
-				break;
-			case 0x53://SRE INDY
-				this.SRE(this.GetAddressIndirectY());
-				break;
-
-			case 0xEB://SBC IMM
-				this.SBC(this.GetAddressImmediate());
-				break;
-
-			case 0x1A://NOP
-			case 0x3A://NOP
-			case 0x5A://NOP
-			case 0x7A://NOP
-			case 0xDA://NOP
-			case 0xFA://NOP
-				break;
-
-			case 0x80://DOP IMM
-			case 0x82://DOP IMM
-			case 0x89://DOP IMM
-			case 0xC2://DOP IMM
-			case 0xE2://DOP IMM
-			case 0x04://DOP ZP
-			case 0x44://DOP ZP
-			case 0x64://DOP ZP
-			case 0x14://DOP ZPX
-			case 0x34://DOP ZPX
-			case 0x54://DOP ZPX
-			case 0x74://DOP ZPX
-			case 0xD4://DOP ZPX
-			case 0xF4://DOP ZPX
-				this.PC++;
-				break;
-
-			case 0x0C://TOP ABS
-			case 0x1C://TOP ABSX
-			case 0x3C://TOP ABSX
-			case 0x5C://TOP ABSX
-			case 0x7C://TOP ABSX
-			case 0xDC://TOP ABSX
-			case 0xFC://TOP ABSX
-				this.PC += 2;
-				break;
-
-			case 0x02://JAM
-			case 0x12://JAM
-			case 0x22://JAM
-			case 0x32://JAM
-			case 0x42://JAM
-			case 0x52://JAM
-			case 0x62://JAM
-			case 0x72://JAM
-			case 0x92://JAM
-			case 0xB2://JAM
-			case 0xD2://JAM
-			case 0xF2://JAM
-			default:
-				alert("oops");
-				this.PC--;
-				break;
-		}
+		this[opcode]();
 	} while(!this.DrawFlag);
 }
 
