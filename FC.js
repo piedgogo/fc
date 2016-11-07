@@ -1045,15 +1045,6 @@ FC.prototype.SRE = function (address) {
 }
 
 
-
-
-
-
-
-
-
-
-
 FC.prototype[0xA1] = function () {//LDA XIND
 	this.LDA(this.GetAddressIndirectX());
 }
