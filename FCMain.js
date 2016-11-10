@@ -181,18 +181,31 @@ function FCSet() {
 		document.getElementById("insert").addEventListener("click", DiskInsert, false);
 		document.getElementById("eject").addEventListener("click", DiskEject, false);
 
-		/*document.getElementById("sramout").addEventListener("click", SramOut, false);
-		document.getElementById("sramin").addEventListener("click", SramIn, false);
+		//document.getElementById("sramout").addEventListener("click", SramOut, false);
+		//document.getElementById("sramin").addEventListener("click", SramIn, false);
 
-		document.getElementById("statesave").addEventListener("click", StateSave, false);
-		document.getElementById("stateload").addEventListener("click", StateLoad, false);*/
+		//document.getElementById("statesave").addEventListener("click", StateSave, false);
+		//document.getElementById("stateload").addEventListener("click", StateLoad, false);
 
 		document.getElementById("start").disabled = true;
 		document.getElementById("pause").disabled = true;
 
 		document.getElementById("insert").disabled = true;
 		document.getElementById("eject").disabled = true;
+
+		document.getElementById("fullscreen").addEventListener("click",  FullScreen, false);
 	}
+}
+
+
+function FullScreen() {
+	var canvas = document.getElementById("canvas0");
+	if(canvas.requestFullScreen)
+		canvas.requestFullScreen();
+	else if(canvas.webkitRequestFullScreen)
+		canvas.webkitRequestFullScreen();
+	else if(canvas.mozRequestFullScreen)
+		canvas.mozRequestFullScreen();
 }
 
 
