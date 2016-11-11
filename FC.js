@@ -165,6 +165,12 @@ function FC() {
 
 
 /* **** FC APU **** */
+
+this.WaveTmp0 = 0;
+this.WaveTmp1 = 0;
+this.WaveTmp2 = 0;
+this.WaveTmp3 = 0;
+
 	this.WaveOut = true;
 	this.WaveDatas = new Array();
 	this.WaveBaseCount = 0;
@@ -4499,7 +4505,7 @@ FC.prototype.Mapper3.prototype.Write = function(address, data) {
 /**** Mapper4 ****/
 FC.prototype.Mapper4 = function(core) {
 	FC.prototype.MapperProto.apply(this, arguments);
-	this.MAPPER_REG = new Array(20);
+	this.MAPPER_REG = new Array(21);
 }
 
 FC.prototype.Mapper4.prototype = Object.create(FC.prototype.MapperProto.prototype);
@@ -4608,11 +4614,10 @@ FC.prototype.Mapper4.prototype.Write = function(address, data) {
 			this.MAPPER_REG[4] = data;
 			break;
 		case 0xC001:
-			this.MAPPER_REG[5] = data;
+			this.MAPPER_REG[5] = 1;
 			break;
 
 		case 0xE000:
-			this.MAPPER_REG[4] = this.MAPPER_REG[5];
 			this.MAPPER_REG[7] = 0;
 			this.ClearIRQ();
 			break;
@@ -4623,10 +4628,18 @@ FC.prototype.Mapper4.prototype.Write = function(address, data) {
 }
 
 FC.prototype.Mapper4.prototype.HSync = function(y) {
-	if(this.MAPPER_REG[7] == 1 && y < 240 && (this.Core.IO1[0x01] & 0x08) == 0x08) {
-		if(--this.MAPPER_REG[4] == 0)
-			this.SetIRQ();
-		this.MAPPER_REG[4] &= 0xFF;
+	if(y < 240 && (this.Core.IO1[0x01] & 0x08) == 0x08) {
+		if(this.MAPPER_REG[20] == 0 || this.MAPPER_REG[5] == 1) {
+			this.MAPPER_REG[20] = this.MAPPER_REG[4];
+			this.MAPPER_REG[5] = 0;
+		} else
+			this.MAPPER_REG[20]--;
+
+		if(this.MAPPER_REG[20] == 0){
+			if(this.MAPPER_REG[7] == 1) {
+				this.SetIRQ();
+			}
+		}
 	}
 }
 
