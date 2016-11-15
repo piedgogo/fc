@@ -2508,6 +2508,7 @@ FC.prototype.PpuRun = function () {
 		}
 
 		if(this.PpuY < 240) {
+
 			var tmpPalette = this.Palette;
 			var tmpPaletteTable = this.PaletteTable;
 			var tmpImageData = this.ImageData.data;
@@ -3051,7 +3052,7 @@ FC.prototype.SetPrgRomPage = function (no, num){
 
 /* **** FC JoyPad **** */
 FC.prototype.WriteJoyPadRegister1 = function (value) {
-	var s = (value & 0x01) == 0x01 ? true : false;
+	var s = (value & 0x01) == 0x01;
 	if(this.JoyPadStrobe && !s) {
 		this.JoyPadBuffer[0] = this.JoyPadState[0];
 		this.JoyPadBuffer[1] = this.JoyPadState[1];
@@ -3230,7 +3231,7 @@ FC.prototype.WebAudioFunction = function (e) {
 		var len = this.WaveDatas.length > this.WebAudioBufferSize ? this.WebAudioBufferSize : this.WaveDatas.length;
 		data = new Float32Array(len);
 		for(var i=0; i<len; i++)
-			data[i] = this.WaveDatas[i] / (128 * 16);
+			data[i] = this.WaveDatas[i] / (128 * 32);
 		this.WaveDatas = this.WaveDatas.slice(len);
 
 		if(this.WaveDatas.length >= this.WebAudioBufferSize * 2)
@@ -5094,7 +5095,7 @@ FC.prototype.Mapper7.prototype.Write = function(address, data) {
 
 
 /**** Mapper9 ****/
-FC.prototype.Mapper9 = function(core) {//<--
+FC.prototype.Mapper9 = function(core) {
 	FC.prototype.MapperProto.apply(this, arguments);
 	//this.MAPPER_REG = new Array(6);
 	this.MAPPER_REG = new Array(4);
@@ -5326,7 +5327,7 @@ FC.prototype.Mapper9.prototype.SetState = function() {
 
 
 /**** Mapper10 ****/
-FC.prototype.Mapper10 = function(core) {//<--
+FC.prototype.Mapper10 = function(core) {
 	FC.prototype.MapperProto.apply(this, arguments);
 	//this.MAPPER_REG = new Array(6);
 	this.MAPPER_REG = new Array(4);
