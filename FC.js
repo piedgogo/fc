@@ -165,12 +165,6 @@ function FC() {
 
 
 /* **** FC APU **** */
-
-this.WaveTmp0 = 0;
-this.WaveTmp1 = 0;
-this.WaveTmp2 = 0;
-this.WaveTmp3 = 0;
-
 	this.WaveOut = true;
 	this.WaveDatas = new Array();
 	this.WaveBaseCount = 0;
